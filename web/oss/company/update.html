@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            修改企业管理
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="renderer" content="webkit">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/eovaicon/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/eova/htmltag/eova_tag.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/css/common.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/eova/css/eova.css">
+        <script type="text/javascript" src="${STATIC!}/ui/js/jquery.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/json2-min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/common.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/string.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/locale/easyui-lang-zh_CN.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/jquery.datagrid.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/nice/jquery.validator.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/jquery.validator.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/zh-CN.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.all.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/jquery-easyui-portal/portal.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/jquery-easyui-portal/jquery.portal.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/ajaxup/ajaxfileupload.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/easy.min.js"></script>
+        <!-- <script type="text/javascript" src="/ui/easy/syExtJavascript.js"></script> -->
+        <!-- <script type="text/javascript" src="/ui/easy/syExtJquery.js"></script> -->
+        <!-- <script type="text/javascript" src="/ui/easy/syExtEasyUI.js"></script> -->
+        <script type="text/javascript" src="${STATIC!}/ui/eova/eova.min.js"></script>
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.common.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.text.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.find.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.auto.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.time.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.icon.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.combo.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.check.js"></script> -->
+        <script type="text/javascript" src="${STATIC!}/eova/htmltag/eova_tag.js"></script>
+    </head>
+    
+    <body>
+        <form id="updateFormcompany" method="post" class="form">
+            <div class="eova-form" style="margin-top: 15px;">
+				<div class="eova-form-field" title="ID[id]" style="display: none;">
+                    <div class="eova-form-lbl">
+                        ID：
+                    </div>
+                    <div>
+                        <div id="id" name="id" value="${company.id!}" class="eova-auto">
+                        </div>
+                    </div>
+                </div>
+                <div class="eova-form-field" title="名称[name]" style="">
+                    <div class="eova-form-lbl red">
+						名称：
+                    </div>
+                    <div>
+                        <div class="eova-text" id="name" name="name" value="${company.name!}" data-options=" disable : false">
+                        </div>
+                    </div>
+                </div>
+                <div class="eova-form-field" title="编码[code]" style="">
+                    <div class="eova-form-lbl red">
+						编码：
+                    </div>
+                    <div>
+                        <div class="eova-text" id="code" name="code" value="${company.code!}" data-options=" disable : false">
+                        </div>
+                    </div>
+                </div>
+                <div class="eova-form-field" title="联系电话[telephone]" style="">
+                    <div class="eova-form-lbl">
+						联系电话：
+                    </div>
+                    <div>
+                        <div class="eova-text" id="telephone" name="telephone" value="${company.telephone!}" data-options=" disable : false">
+                        </div>
+                    </div>
+                </div>
+                <div class="eova-form-field" title="联系地址[address]" style="width: 98%;">
+                    <div class="eova-form-lbl">
+						联系地址：
+                    </div>
+                    <div>
+                        <textarea class="eova-texts" id="address" name="address" style="width: 468px; height:20px; border: 1px solid #95B8E7;">${company.address!}</textarea>
+                    </div>
+                </div>
+                <div class="eova-form-field" title="备注[remark]" style="width: 98%;">
+                    <div class="eova-form-lbl">
+						备注：
+                    </div>
+                    <div>
+                        <textarea class="eova-texts" id="remark" name="remark" rows="5" style="width: 468px; border: 1px solid #95B8E7;">${company.remark!}</textarea>
+                    </div>
+                </div>
+                <!-- 
+                <div class="eova-form-field" title="创建时间[create_time]" style="">
+                    <div class="eova-form-lbl red">
+						创建时间
+                    </div>
+                    <div>
+                        <div class="eova-time" id="create_time" name="create_time" value="${company.create_time!}"
+                        data-options="format:'yyyy-MM-dd HH:mm:ss', disable : false">
+                        </div>
+                    </div>
+                </div>
+                <div class="eova-form-field" title="更新时间[update_time]" style="">
+                    <div class="eova-form-lbl">
+						更新时间
+                    </div>
+                    <div>
+                        <div class="eova-time" id="update_time" name="update_time" value="${company.update_time!}"
+                        data-options="format:'yyyy-MM-dd HH:mm:ss', disable : false">
+                        </div>
+                    </div>
+                </div> -->
+        	</div>
+        </form>
+        <script>
+            $(function() {
+                var $form = $('#updateFormcompany');
+                $form.validator({
+                    debug: false,
+                    stopOnError: true,
+                    focusInvalid: false,
+                    showOk: false,
+                    timely: 0,
+                    msgMaker: false,
+                    fields: {
+                        name: {
+                            rule: "名称:required;"
+                        },
+                        code: {
+                            rule: "编码:required;"
+                        }
+                    }
+                });
+                $form.on("validation", $.validation);
+            });
+        </script>
+        <script type="text/javascript">
+            var $form = $('#updateFormcompany');
+
+            var submitNow = function($dialog, $grid, $pjq) {
+                var url = "/form/doUpdate/oss_company";
+                $.post(url, sy.serializeObject($form),
+                function(result) {
+                    if (result.success) {
+                        $.slideMsg("修改企业信息成功！", $pjq);
+                        if ($grid.context.URL.indexOf('/single_tree') != -1) {
+                            $grid.treegrid('load');
+                        } else {
+                            $grid.datagrid('load');
+                        }
+                        $dialog.dialog('destroy');
+
+                    } else {
+                        $.alert($pjq, result.msg);
+                    }
+                },
+                'json');
+            };
+
+            var submitForm = function($dialog, $grid, $pjq) {
+                // nice validator
+                $form.isValid(function(isValied) {
+                    if (isValied) {
+                        submitNow($dialog, $grid, $pjq);
+                    }
+                });
+            };
+        </script>
+    </body>
+    <script>
+        $(function() {
+            $('div[class="eova-text"]').eovatext();
+            $('div[class="eova-time"]').eovatime();
+            $('div[class="eova-auto"]').eovaauto();
+            $('div[class="eova-check"]').eovacheck();
+            $('div[class="eova-find"]').eovafind();
+            $('div[class="eova-combo"]').eovacombo();
+            $('div[class="eova-icon"]').eovaicon();
+        });
+    </script>
+
+</html>

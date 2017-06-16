@@ -1,0 +1,13 @@
+<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'${button.icon!}',plain:true"
+onclick="company_diyupdate()">
+	${button.name!}
+</a>
+<script type="text/javascript">
+    var company_diyupdate = function () {
+        var grid = $('#${gridId}');
+        var row = grid.datagrid('getSelected');
+        if (isSelected(row)) {
+            loadDialog(grid, '修改${object.name}', '/company/update/' + row.id, 600, 350);
+        }
+    };
+</script>

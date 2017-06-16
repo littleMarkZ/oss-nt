@@ -1,0 +1,35 @@
+<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'${button.icon!}',plain:true"
+   onclick="crud_check_${object.code}()">
+    ${button.name!}
+</a>
+<script type="text/javascript">
+    var crud_check_${object.code} = function () {
+    	var $grid = $('#${gridId}');
+        var array = $grid.datagrid('getSelections');
+        var num = array.length; //获取要删除信息的个数
+        if (num == "0") {
+        	$.slideMsg("请选择一条记录！");
+            return;
+        }
+        
+        $.messager.confirm('请确认', '您要对当前项目发起审核？', function(o) {
+    		if (o) {
+    			var json2 = JSON.stringify(array);
+                var $jq = $(this);
+                $.syncPost('/sjsj/doCheck/' + '${object.code}', {rows: json2},
+                        function (result, status) {
+                            if (result.success) {
+                            	$.slideMsg("发起审核成功！");
+                            	if($grid.context.URL.indexOf('/single_tree') != -1){
+                            		$grid.treegrid('load');
+                            	} else {
+                            		$grid.datagrid('load');
+                            	}
+                            } else {
+                            	$.messager.alert("操作错误", result.msg ,'error');
+                            }
+                        });
+    		}
+    	});
+    };
+</script>

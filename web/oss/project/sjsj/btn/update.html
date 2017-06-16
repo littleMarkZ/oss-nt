@@ -1,0 +1,13 @@
+<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'${button.icon!}',plain:true"
+onclick="sjsj_diyupdate()">
+	${button.name!}
+</a>
+<script type="text/javascript">
+    var sjsj_diyupdate = function () {
+        var grid = $('#${gridId}');
+        var row = grid.datagrid('getSelected');
+        if (isSelected(row)) {
+            loadDialog(grid, '${object.name}评审', '/sjsj/update/' + row.id, 940, 660);
+        }
+    };
+</script>

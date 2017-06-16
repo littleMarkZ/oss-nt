@@ -1,0 +1,23 @@
+<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'${button.icon!}',plain:true"
+onclick="project_diyupload()">
+	${button.name!}
+</a>
+<script type="text/javascript">
+    var project_diyupload = function () {
+        var grid = $('#${gridId}');
+        var row = grid.datagrid('getSelected');
+        if (isSelected(row)) {
+         	// 弹出窗口
+         	var dialog = parent.sy.modalDialog({
+         		title : '上传附件',
+         		url : '/project/upload/' + row.id,
+         		buttons : [{
+         			text : '&nbsp;关&nbsp;闭&nbsp;',
+         			handler : function() {
+         				dialog.dialog('close');
+         			}
+         		}]
+         	}, 790, 420);
+        }
+    };
+</script>

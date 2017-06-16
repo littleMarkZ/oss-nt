@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>上传附件</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="renderer" content="webkit">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/eovaicon/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/eova/htmltag/eova_tag.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/css/common.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/eova/css/eova.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css">
+        <script type="text/javascript" src="${STATIC!}/ui/js/jquery.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/json2-min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/common.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/string.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/locale/easyui-lang-zh_CN.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/jquery.datagrid.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/nice/jquery.validator.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/jquery.validator.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/zh-CN.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.all.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/jquery-easyui-portal/portal.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/jquery-easyui-portal/jquery.portal.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/ajaxup/ajaxfileupload.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/easy.min.js"></script>
+        <!-- <script type="text/javascript" src="/ui/easy/syExtJavascript.js"></script> -->
+        <!-- <script type="text/javascript" src="/ui/easy/syExtJquery.js"></script> -->
+        <!-- <script type="text/javascript" src="/ui/easy/syExtEasyUI.js"></script> -->
+        <script type="text/javascript" src="${STATIC!}/ui/eova/eova.min.js"></script>
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.common.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.text.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.find.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.auto.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.time.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.icon.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.combo.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.check.js"></script> -->
+        <script type="text/javascript" src="${STATIC!}/eova/htmltag/eova_tag.js"></script>
+		<script type="text/javascript" src="${STATIC!}/plugins/plupload/js/plupload.full.js"></script>
+		<script type="text/javascript" src="${STATIC!}/plugins/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+		<script type="text/javascript" src="${STATIC!}/plugins/plupload/js/i18n/cn.js"></script>
+    </head>
+    
+    <body>
+        <div>
+			<div style="width: 100%; margin: 0;">
+				<form id="formId" action="Submit1.action" method="post">
+					<div class="eova-form-field" title="ID[id]" style="display: none;">
+			            <div class="eova-form-lbl">
+			                ID：
+			            </div>
+			            <div>
+			                <div id="id" name="id" value="${project.id!}" class="eova-auto">
+			                </div>
+			            </div>
+			        </div>
+					<div id="uploader">
+						<p>您的浏览器未安装 Flash, Silverlight, Gears, BrowserPlus 或者支持 HTML5 .</p>
+					</div>
+					<!-- <input class="btn btn-default" type="button" value="保存" id="saveControl" /> -->
+				</form>
+			</div>
+		</div>
+    </body>
+    <script type="text/javascript">
+		// Convert divs to queue widgets when the DOM is ready
+		$(function() {
+			$("#uploader").pluploadQueue({
+				// General settings
+				runtimes : 'gears,flash,silverlight,browserplus,html5,html4',
+				url : '${STATIC!}/project/plupload/${project.id!}',
+				max_file_size : '10mb',
+				unique_names : false,
+				multiple_queues : true,
+				chunk_size: '0',
+				// Specify what files to browse for
+				//filters : [{title : "xls, xlsx文档", extensions : "xls,xlsx"}],
+				rename : false,
+				views : {
+					list : true,
+					thumbs : true, // Show thumbs
+					active : 'thumbs'
+				},
+				// Flash settings
+				flash_swf_url : '${STATIC!}/plugins/plupload/js/plupload.flash.swf',
+				// Silverlight settings
+				silverlight_xap_url : '${STATIC!}/plugins/plupload/js/plupload.silverlight.xap'
+			});
+			$('form').submit(function(e) {
+		        var uploader = $('#uploader').pluploadQueue();
+		        if (uploader.files.length > 0) {
+		            // When all files are uploaded submit form
+		            uploader.bind('StateChanged', function() {
+		                if (uploader.files.length === (uploader.total.uploaded + uploader.total.failed)) {
+		                    $('form')[0].submit();
+		                }
+		            });
+		            uploader.start();
+		        } else {
+					alert('请先上传数据文件.');
+				}
+		        return false;
+	    	});
+		});
+	</script>
+</html>

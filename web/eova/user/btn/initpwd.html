@@ -1,0 +1,34 @@
+<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'${button.icon!}',plain:true"
+onclick="eova_initpwd()">
+	${button.name!}
+</a>
+<script type="text/javascript">
+var eova_initpwd = function() {
+	var $grid = $('#${gridId}');
+    var array = $grid.datagrid('getSelections');
+    var num = array.length; //获取要删除信息的个数
+    if (num == "0") {
+    	$.slideMsg("请选择一条记录！");
+        return;
+    }
+    $.messager.confirm('请确认', '您要初始化当前所选用户的密码？', function(o) {
+		if (o) {
+			var json2 = JSON.stringify(array);
+            var $jq = $(this);
+            $.syncPost('/user/initpwd/' + '${object.code}', {rows: json2},
+                    function (result, status) {
+                        if (result.success) {
+                        	$.slideMsg("初始化用户密码成功！");
+                        	if($grid.context.URL.indexOf('/single_tree') != -1){
+                        		$grid.treegrid('load');
+                        	} else {
+                        		$grid.datagrid('load');
+                        	}
+                        } else {
+                        	$.messager.alert("操作错误", result.msg ,'error');
+                        }
+                    });
+		}
+	});
+};
+</script>

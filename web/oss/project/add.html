@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>新增项目管理</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="renderer" content="webkit">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/eovaicon/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/eova/htmltag/eova_tag.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/css/common.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/eova/css/eova.css">
+        <script type="text/javascript" src="${STATIC!}/ui/js/jquery.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/json2-min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/common.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/string.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/locale/easyui-lang-zh_CN.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/jquery.datagrid.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/nice/jquery.validator.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/jquery.validator.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/zh-CN.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.all.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/jquery-easyui-portal/portal.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/jquery-easyui-portal/jquery.portal.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/ajaxup/ajaxfileupload.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/easy.min.js"></script>
+        <!-- <script type="text/javascript" src="/ui/easy/syExtJavascript.js"></script> -->
+        <!-- <script type="text/javascript" src="/ui/easy/syExtJquery.js"></script> -->
+        <!-- <script type="text/javascript" src="/ui/easy/syExtEasyUI.js"></script> -->
+        <script type="text/javascript" src="${STATIC!}/ui/eova/eova.min.js"></script>
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.common.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.text.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.find.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.auto.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.time.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.icon.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.combo.js"></script> -->
+        <!-- <script type="text/javascript" src="${STATIC!}/ui/eova/src/eova.check.js"></script> -->
+        <script type="text/javascript" src="${STATIC!}/eova/htmltag/eova_tag.js"></script>
+    </head>
+    
+    <body>
+        <form id="projectForm" method="post" class="form">
+            <div class="eova-form">
+            	<fieldset style="margin: 10px;">
+            		<legend>基本信息</legend>
+					<div class="eova-form-field" title="ID[id]" style="display: none;">
+	                    <div class="eova-form-lbl">
+	                        ID：
+	                    </div>
+	                    <div>
+	                        <div id="id" name="id" value="${project.id!}" class="eova-auto">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="所属企业[company_id]" style="">
+	                    <div class="eova-form-lbl red">
+							企业名称：
+	                    </div>
+	                    <div>
+	                        <div class="eova-find" id="company_id" name="company_id" value="${project.company_id!}" url="/widget/find?code=${object.code}&field=company_id&multiple=false" data-options=" disable : false">
+	                        </div>
+	                        <script>
+	                            $('#company_id').eovafind({
+	                                valueField: 'id',
+	                                textField: 'cn',
+	                                multiple: false
+	                            });
+	                        </script>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="名称[name]" style="">
+	                    <div class="eova-form-lbl red">
+							项目名称：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="name" name="name" value="${project.name!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="报告文号[bgwh]" style="">
+	                    <div class="eova-form-lbl">
+							报告文号：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="bgwh" name="bgwh" value="${project.bgwh!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="经办人[jbr_id]" style="">
+	                    <div class="eova-form-lbl red">
+							经办人员：
+	                    </div>
+	                    <div>
+	                        <div class="eova-find" id="jbr_id" name="jbr_id" value="${project.jbr_id!}" url="/widget/find?code=${object.code}&field=jbr_id&multiple=false" data-options=" disable : false">
+	                        </div>
+	                        <script>
+	                            $('#jbr_id').eovafind({
+	                                valueField: 'id',
+	                                textField: 'cn',
+	                                multiple: false
+	                            });
+	                        </script>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="实收金额[ssje]" style="">
+	                    <div class="eova-form-lbl red">
+							实收金额：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="ssje" name="ssje" value="${project.ssje!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="到款金额[dkje]" style="">
+	                    <div class="eova-form-lbl">
+							到款金额：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="dkje" name="dkje" value="${project.dkje!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="来源人员[ywlyer_id]" style="">
+	                    <div class="eova-form-lbl red">
+							来源人员：
+	                    </div>
+	                    <div>
+	                        <div class="eova-find" id="ywlyer_id" name="ywlyer_id" value="${project.ywlyer_id!}" url="/widget/find?code=${object.code}&field=ywlyer_id&multiple=false" data-options=" disable : false">
+	                        </div>
+	                        <script>
+	                            $('#ywlyer_id').eovafind({
+	                                valueField: 'id',
+	                                textField: 'cn',
+	                                multiple: false
+	                            });
+	                        </script>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="主审人员[zsry_id]" style="">
+	                    <div class="eova-form-lbl red">
+							主审人员：
+	                    </div>
+	                    <div>
+	                        <div class="eova-find" id="zsry_id" name="zsry_id" value="${project.zsry_id!}" url="/widget/find?code=${object.code}&field=zsry_id&multiple=false" data-options=" disable : false">
+	                        </div>
+	                        <script>
+	                            $('#zsry_id').eovafind({
+	                                valueField: 'id',
+	                                textField: 'cn',
+	                                multiple: false
+	                            });
+	                        </script>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="主审提成[tc]" style="">
+	                    <div class="eova-form-lbl red">
+							主审提成：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="tc" name="tc" value="${project.tc!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="中介公司[zjgs]" style="">
+	                    <div class="eova-form-lbl">
+							中介公司：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="zjgs" name="zjgs" value="${project.zjgs!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="创建人[author_name]" style="">
+	                    <div class="eova-form-lbl">
+							创建人：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="author_name" name="author_name" value="${author_name!}" data-options=" disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="创建时间[create_time]" style="">
+	                    <div class="eova-form-lbl">
+							创建时间
+	                    </div>
+	                    <div>
+	                        <div class="eova-time" id="create_time" name="create_time" value="${create_time!}"
+	                        data-options="format:'yyyy-MM-dd HH:mm:ss', disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="备注信息[remark]" style="width: 98%">
+	                    <div class="eova-form-lbl">
+							备注信息：
+	                    </div>
+	                    <div>
+	                        <textarea class="eova-texts" id="remark" name="remark" style="width:758px; height:40px; border: 1px solid #95B8E7;">${project.remark!}</textarea>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>状态信息</legend>
+	                <div class="eova-form-field" title="项目状态[xm_status]" style="">
+	                    <div class="eova-form-lbl red">
+							项目状态：
+	                    </div>
+	                    <div>
+	                        <div class="eova-combo" id="xm_status" name="xm_status" value="${project.xm_status!}" url="/widget/comboJson/oss_project-xm_status" data-options=" disable : false">
+	                        </div>
+	                        <script>
+	                            $('#xm_status').eovacombo({
+	                                valueField: 'id',
+	                                textField: 'cn',
+	                                multiple: false
+	                            });
+	                        </script>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="情况说明[xmzt_qksm]" style="width: 63%">
+	                    <div class="eova-form-lbl">
+							情况说明：
+	                    </div>
+	                    <div>
+	                        <textarea class="eova-texts" id="xmzt_qksm" name="xmzt_qksm" style="width:464px; height:20px; border: 1px solid #95B8E7;">${project.xmzt_qksm!}</textarea>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>完成情况</legend>
+	                <div class="eova-form-field" title="项目终止[xmzz]" style="">
+	                    <div class="eova-form-lbl">
+							项目终止：
+	                    </div>
+	                    <div>
+	                        <div class="eova-combo" id="xmzz" name="xmzz" value="${project.xmzz!}" url="/widget/comboJson/oss_project-xmzz" data-options=" disable : false">
+	                        </div>
+	                        <script>
+	                            $('#xmzz').eovacombo({
+	                                valueField: 'id',
+	                                textField: 'cn',
+	                                multiple: false
+	                            });
+	                        </script>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="情况说明[xmzz_qksm]" style="width: 63%">
+	                    <div class="eova-form-lbl">
+							情况说明：
+	                    </div>
+	                    <div>
+	                        <textarea class="eova-texts" id="xmzz_qksm" name="xmzz_qksm" style="width:464px; height:20px; border: 1px solid #95B8E7;">${project.xmzz_qksm!}</textarea>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>报备信息</legend>
+	                <div class="eova-form-field" title="报备公司[bbgs]" style="">
+	                    <div class="eova-form-lbl">
+							报备公司：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="bbgs" name="bbgs" value="${project.bbgs!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="报备金额[bbje]" style="">
+	                    <div class="eova-form-lbl">
+							报备金额：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="bbje" name="bbje" value="${project.bbje!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="报备收据号[bbsjh]" style="">
+	                    <div class="eova-form-lbl">
+							报备收据号：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="bbsjh" name="bbsjh" value="${project.bbsjh!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>底稿信息</legend>
+	                <div class="eova-form-field" title="底稿状态[dgzt]" style="">
+	                    <div class="eova-form-lbl">
+							底稿状态：
+	                    </div>
+	                    <div>
+	                    	<div class="eova-text" id="dgzt" name="dgzt" value="${project.dgzt!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="交报告时间[jfbg_time]" style="">
+	                    <div class="eova-form-lbl">
+							交报告时间：
+	                    </div>
+	                    <div>
+	                        <div class="eova-time" id="jfbg_time" name="jfbg_time" value="${project.jfbg_time!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="存放底稿位置[dgwz]" style="width: 98%">
+	                    <div class="eova-form-lbl">
+							存放位置：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="dgwz" name="dgwz" style="width:758px; height:20px; border: 1px solid #95B8E7;">${project.dgwz!}</textarea>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>开票信息</legend>
+	                <div class="eova-form-field" title="开票金额[kpje]" style="">
+	                    <div class="eova-form-lbl">
+							开票金额：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="kpje" name="kpje" value="${project.kpje!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="开票名称[kpmc]" style="">
+	                    <div class="eova-form-lbl">
+							开票名称：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="kpmc" name="kpmc" value="${project.kpmc!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="发票号码[fphm]" style="">
+	                    <div class="eova-form-lbl">
+							发票号码：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="fphm" name="fphm" value="${project.fphm!}" data-options=" disable : false">
+	                        </div>
+	                    </div>
+	                </div>
+                </fieldset>
+        	</div>
+        </form>
+        <script>
+            $(function() {
+                var $form = $('#projectForm');
+                $form.validator({
+                    debug: false,
+                    stopOnError: true,
+                    focusInvalid: false,
+                    showOk: false,
+                    timely: 0,
+                    msgMaker: false,
+                    fields: {
+                        name: {
+                            rule: "项目名称:required;"
+                        },
+                        company_id: {
+                            rule: "所属企业:required;"
+                        },
+                        ywlyer_id: {
+                        	rule: "来源人员:required;"
+                        },
+                        jbr_id: {
+                        	rule: "经办人员:required;"
+                        },
+                        ssje: {
+                            rule: "实收金额:required;digits"
+                        },
+                        zsry_id: {
+                            rule: "主审人员:required;"
+                        },
+                        tc: {
+                            rule: "主审提成:required;"
+                        },
+                        xm_status: {
+                        	rule: "项目状态:required;"
+                        }
+                    }
+                });
+                $form.on("validation", $.validation);
+            });
+        </script>
+        <script type="text/javascript">
+            var $form = $('#projectForm');
+
+            var submitNow = function($dialog, $grid, $pjq) {
+                var url = "/form/doAdd/oss_project";
+                $.post(url, sy.serializeObject($form),
+                function(result) {
+                    if (result.success) {
+                        $.slideMsg("新增项目信息成功！", $pjq);
+                        if ($grid.context.URL.indexOf('/single_tree') != -1) {
+                            $grid.treegrid('load');
+                        } else {
+                            $grid.datagrid('load');
+                        }
+                        $dialog.dialog('destroy');
+
+                    } else {
+                        $.alert($pjq, result.msg);
+                    }
+                },
+                'json');
+            };
+
+            var submitForm = function($dialog, $grid, $pjq) {
+                // nice validator
+                $form.isValid(function(isValied) {
+                    if (isValied) {
+                        submitNow($dialog, $grid, $pjq);
+                    }
+                });
+            };
+        </script>
+    </body>
+    <script>
+        $(function() {
+            $('div[class="eova-text"]').eovatext();
+            $('div[class="eova-time"]').eovatime();
+            $('div[class="eova-auto"]').eovaauto();
+            $('div[class="eova-check"]').eovacheck();
+            $('div[class="eova-find"]').eovafind();
+            $('div[class="eova-combo"]').eovacombo();
+            $('div[class="eova-icon"]').eovaicon();
+        });
+    </script>
+
+</html>

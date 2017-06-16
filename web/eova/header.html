@@ -1,0 +1,26 @@
+<div id="header">
+	<div class="headerNav">
+		<a class="logo" href="http://www.gznt188.cn/" target="_blank"><img src="/ui/images/logo.gif" alt="广州南天会计师事务所-官方主页"></a>
+		<ul class="nav">
+			<li style="color: #000000;">欢迎您，${user.nickname}！</li>
+			<li><a href="#" onclick="updatePwd();"><span style="color: #000000;">修改密码</span></a></li>
+			<li><a href="/toLogin"><span style="color: #000000;">注销</span></a></li>
+			<li><a href="/doExit"><span style="color: #000000;">退出</span></a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	var updatePwd = function() {
+		var dialog = parent.sy.modalDialog({
+			title : '修改密码',
+			url : '/toUpdatePwd',
+			buttons : [ {
+				text : '确定',
+				handler : function() {
+					dialog.find('iframe').get(0).contentWindow.submitForm(
+							dialog,parent.$);
+				}
+			} ]
+		},400,180);
+	};
+</script>

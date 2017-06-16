@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>查看三级审计</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="renderer" content="webkit">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/eovaicon/icon.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/eova/htmltag/eova_tag.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/css/common.css">
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/ui/eova/css/eova.css">
+        <script type="text/javascript" src="${STATIC!}/ui/js/jquery.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/json2-min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/common.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/js/string.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/easyui/locale/easyui-lang-zh_CN.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/jquery.datagrid.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/nice/jquery.validator.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/jquery.validator.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/nice/zh-CN.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/ueditor.all.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="${STATIC!}/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+        <link rel="stylesheet" type="text/css" href="${STATIC!}/plugins/jquery-easyui-portal/portal.css">
+        <script type="text/javascript" src="${STATIC!}/plugins/jquery-easyui-portal/jquery.portal.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="${STATIC!}/plugins/ajaxup/ajaxfileupload.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/easy/easy.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/ui/eova/eova.min.js"></script>
+        <script type="text/javascript" src="${STATIC!}/eova/htmltag/eova_tag.js"></script>
+    </head>
+    
+    <body>
+        <form id="sjsjForm" method="post" class="form">
+            <div class="eova-form">
+            	<fieldset style="margin: 10px;">
+            		<legend>基本信息</legend>
+					<div class="eova-form-field" title="ID[id]" style="display: none;">
+	                    <div class="eova-form-lbl">
+	                        ID：
+	                    </div>
+	                    <div>
+	                        <div id="id" name="id" value="${sjsj.id!}" class="eova-auto">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="被审单位名称[bsdwmc]" style="">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							被审单位名称：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="bsdwmc" name="bsdwmc" value="${sjsj.bsdwmc!}" data-options="disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="项目名称[project_id]" style="">
+	                    <div class="eova-form-lbl">
+							项目名称：
+	                    </div>
+	                    <div>
+	                        <div class="eova-find" id="project_id" name="project_id" value="${sjsj.project_id!}" code="oss_project_sjsj" field="project_id" url="/widget/find?code=oss_project_sjsj&field=project_id&multiple=false" data-options="disable : true">
+	                        </div>
+	                        <script>
+	                            $('#project_id').eovafind({
+	                                valueField: 'id',
+	                                textField: 'cn',
+	                                multiple: false
+	                            });
+	                        </script>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="报告文号[bgwh]" style="">
+	                    <div class="eova-form-lbl">
+							报告文号：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="bgwh" name="bgwh" value="${sjsj.bgwh!}" data-options="disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="审计报告名称[sjbgmc]" style="">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							审计报告名称：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="sjbgmc" name="sjbgmc" value="${sjsj.sjbgmc!}" data-options="disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="报告份数[bgfs]" style="">
+	                    <div class="eova-form-lbl">
+							报告份数：
+	                    </div>
+	                    <div>
+	                        <div class="eova-text" id="bgfs" name="bgfs" value="${sjsj.bgfs!}" data-options="disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>主审信息</legend>
+	                <div class="eova-form-field" title="主审团队[zstd]" style="width: 98%">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							主审团队：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="zstd" name="zstd" style="width:744px; height:60px; border: 1px solid #95B8E7;" disabled>${sjsj.zstd!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="团队签字确认[zstd_qr]" style="width: 65%;">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							团队签字确认：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="zstd_qr" name="zstd_qr" style="width:464px; height:20px; border: 1px solid #95B8E7;" disabled>${sjsj.zstd_qr!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="时间[zsqr_time]">
+	                    <div class="eova-form-lbl" style="width: 80px;">
+							填写时间：
+	                    </div>
+	                    <div>
+	                        <div class="eova-time" id="zsqr_time" name="zsqr_time" value="${sjsj.zsqr_time!}" data-options="disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>复审信息</legend>
+	                <div class="eova-form-field" title="复审团队[fstd]" style="width: 65%;">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							复审团队：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="fstd" name="fstd" style="width:464px; height:20px; border: 1px solid #95B8E7;" disabled>${sjsj.fstd!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="时间[fstd_time]" style="">
+	                    <div class="eova-form-lbl" style="width: 80px;">
+							填写时间：
+	                    </div>
+	                    <div>
+	                        <div class="eova-time" id="fstd_time" name="fstd_time" value="${sjsj.fstd_time!}" data-options="disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="情况说明[fstd_qksm]" style="width: 98%">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							情况说明：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="fstd_qksm" name="fstd_qksm" style="width:744px; height:60px; border: 1px solid #95B8E7;" disabled>${sjsj.fstd_qksm!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="团队签字确认[fstd_qr]" style="width: 65%;">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							团队签字确认：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="fstd_qr" name="fstd_qr" style="width:464px; height:20px; border: 1px solid #95B8E7;" disabled>${sjsj.fstd_qr!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="时间[fsqr_time]">
+	                    <div class="eova-form-lbl" style="width: 80px;">
+							填写时间：
+	                    </div>
+	                    <div>
+	                        <div class="eova-time" id="fsqr_time" name="fsqr_time" value="${sjsj.fsqr_time!}" data-options=" disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+                </fieldset>
+            	<fieldset style="margin: 10px;">
+            		<legend>终审信息</legend>
+	                <div class="eova-form-field" title="终审团队[zztd]" style="width: 65%;">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							终审团队：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="zztd" name="zztd" style="width:464px; height:20px; border: 1px solid #95B8E7;" disabled>${sjsj.zztd!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="时间[zztd_time]" style="">
+	                    <div class="eova-form-lbl" style="width: 80px;">
+							填写时间：
+	                    </div>
+	                    <div>
+	                        <div class="eova-time" id="zztd_time" name="zztd_time" value="${sjsj.zztd_time!}" data-options=" disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="情况说明[zztd_qksm]" style="width: 98%">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							情况说明：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="zztd_qksm" name="zztd_qksm" style="width:744px; height:60px; border: 1px solid #95B8E7;" disabled>${sjsj.zztd_qksm!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="团队签字确认[zztd_qr]" style="width: 65%;">
+	                    <div class="eova-form-lbl" style="width: 100px;">
+							团队签字确认：
+	                    </div>
+	                    <div>
+	                    	<textarea class="eova-texts" id="zztd_qr" name="zztd_qr" style="width:464px; height:20px; border: 1px solid #95B8E7;" disabled>${sjsj.zztd_qr!}</textarea>
+	                    </div>
+	                </div>
+	                <div class="eova-form-field" title="时间[zzqr_time]">
+	                    <div class="eova-form-lbl" style="width: 80px;">
+							填写时间：
+	                    </div>
+	                    <div>
+	                        <div class="eova-time" id="zzqr_time" name="zzqr_time" value="${sjsj.zzqr_time!}" data-options="disable : true">
+	                        </div>
+	                    </div>
+	                </div>
+                </fieldset>
+        	</div>
+        </form>
+        <script type="text/javascript">
+			var submitForm = function($dialog, $grid, $pjq) {
+			    $dialog.dialog('destroy');
+			};
+		</script>
+    </body>
+    <script>
+        $(function() {
+            $('div[class="eova-text"]').eovatext();
+            $('div[class="eova-time"]').eovatime();
+            $('div[class="eova-auto"]').eovaauto();
+            $('div[class="eova-check"]').eovacheck();
+            $('div[class="eova-find"]').eovafind();
+            $('div[class="eova-combo"]').eovacombo();
+            $('div[class="eova-icon"]').eovaicon();
+        });
+    </script>
+</html>
