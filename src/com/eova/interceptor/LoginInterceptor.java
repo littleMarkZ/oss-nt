@@ -22,6 +22,7 @@ public class LoginInterceptor implements Interceptor {
 	
 	public static ArrayList<String> excludes = new ArrayList<String>();
 	static{
+		excludes.add("/captcha");
 		excludes.add("/toLogin");
 		excludes.add("/vcodeImg");
 		excludes.add("/doLogin");

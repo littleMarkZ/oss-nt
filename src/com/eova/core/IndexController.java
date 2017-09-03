@@ -26,6 +26,7 @@ import com.eova.model.User;
 import com.eova.service.sm;
 import com.eova.widget.WidgetUtil;
 import com.jfinal.core.Controller;
+import com.jfinal.render.CaptchaRender;
 
 /**
  * Eova入口
@@ -34,6 +35,10 @@ import com.jfinal.core.Controller;
  * @date 2015-1-6
  */
 public class IndexController extends Controller {
+	
+	public void captcha() {
+		render(new CaptchaRender());
+	}
 
 	public void toMain() {
 		render("/eova/main.html");
@@ -83,6 +88,9 @@ public class IndexController extends Controller {
 			render("/eova/520.html");
 			return;
 		}
+		
+		boolean isCaptcha = xx.toBoolean(EovaConfig.props.get("isCaptcha"), true);
+		setAttr("isCaptcha", isCaptcha);
 
 		render("/eova/login.html");
 	}
@@ -145,6 +153,13 @@ public class IndexController extends Controller {
 	public void doLogin() {
 		String loginId = getPara("loginId");
 		String loginPwd = getPara("loginPwd");
+		
+		boolean isCaptcha = xx.toBoolean(EovaConfig.props.get("isCaptcha"), true);
+		if (isCaptcha && !super.validateCaptcha("captcha")) {
+			setAttr("msg", "验证码错误，请重新输入！");
+			toLogin();
+			return;
+		}
 
 		User user = User.dao.getByLoginId(loginId);
 		if (user == null) {

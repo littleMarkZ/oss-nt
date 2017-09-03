@@ -71,6 +71,13 @@
                                     class="logininput ui-keyboard-input ui-widget-content ui-corner-all"/>
 						</span>
                 </p>
+                <%if(isTrue(isCaptcha!)){%>
+				<p>
+					<label class="loginlabel" for="captcha"> 验证码:</label>
+					<input class="logininput ui-keyboard-input ui-widget-content ui-corner-all" name="captcha" id="captcha" type="text" value="" style="width: 75px;" maxlength="4"/>
+						<img src="/captcha" height="27" onclick="this.src='/captcha?'+Math.random()" style="cursor:pointer;vertical-align: middle;" />
+				</p>
+				<%}%>
                 <div style="text-align: left; margin-left: 80px; margin-bottom: 5px; color: #BE1302;">
                     <b>${msg!}</b>
                 </div>
